@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cirkevné dejiny – poznámky na učenie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f7f2e8; --paper-2:#efe7d6; --card:#fffdf8;
+    --ink:#2b2320; --ink-soft:#5e534c; --line:#e2d7c2;
+    --wine:#7b1e2c; --wine-soft:#f3e3e1; --gold:#a8812f; --gold-soft:#f5ead2;
+    --green:#2f6b4f; --green-soft:#e2efe7;
+    --serif:'Cormorant Garamond',Georgia,serif; --sans:'Source Sans 3',system-ui,sans-serif;
+    --r:16px; --shadow:0 1px 2px rgba(60,40,20,.06),0 8px 24px rgba(60,40,20,.07);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:76px}
+  body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:20;background:rgba(247,242,232,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:6px;padding:10px 20px;overflow-x:auto;scrollbar-width:none}
+  .nav-in::-webkit-scrollbar{display:none}
+  .brand{font:700 20px var(--serif);color:var(--wine);margin-right:10px;white-space:nowrap;text-decoration:none}
+  .nav-in a.l{font-size:14px;font-weight:600;color:var(--ink-soft);text-decoration:none;padding:6px 12px;border-radius:999px;white-space:nowrap;transition:.2s}
+  .nav-in a.l:hover{background:var(--paper-2);color:var(--ink)}
+  .nav-in a.l.test{background:var(--wine);color:#fff}
+  .nav-in a.l.test:hover{background:#651723}
+
+  /* HERO */
+  header{position:relative;overflow:hidden;text-align:center;padding:84px 20px 70px;border-bottom:1px solid var(--line);
+    background:radial-gradient(1200px 400px at 50% -10%,#fffaf0 0%,transparent 70%),var(--paper)}
+  .cross{width:46px;height:46px;margin:0 auto 18px;color:var(--gold)}
+  .eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  h1{font:700 clamp(44px,8vw,84px)/1 var(--serif);margin:12px 0 16px;color:var(--ink);letter-spacing:-.01em}
+  h1 em{color:var(--wine);font-style:italic;font-weight:600}
+  .lead{max-width:600px;margin:0 auto 30px;color:var(--ink-soft);font-size:19px}
+  .progress-wrap{max-width:420px;margin:0 auto;text-align:left}
+  .progress-label{display:flex;justify-content:space-between;font-size:14px;color:var(--ink-soft);margin-bottom:6px;font-weight:600}
+  .bar{height:8px;background:var(--paper-2);border-radius:99px;overflow:hidden;border:1px solid var(--line)}
+  .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--wine));transition:width .5s}
+  .hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+  .btn{font:600 15px var(--sans);border:1px solid var(--line);background:var(--card);color:var(--ink);padding:11px 20px;border-radius:999px;cursor:pointer;text-decoration:none;transition:.2s;display:inline-flex;align-items:center;gap:8px}
+  .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+  .btn.primary{background:var(--wine);border-color:var(--wine);color:#fff}
+
+  /* LAYOUT */
+  main{max-width:880px;margin:0 auto;padding:30px 20px 80px}
+  section.ch{margin:56px 0}
+  .ch-head{display:flex;align-items:flex-end;gap:18px;margin-bottom:20px;border-bottom:1px solid var(--line);padding-bottom:14px}
+  .num{font:700 64px/0.8 var(--serif);color:var(--gold);opacity:.55;min-width:46px}
+  .ch-head h2{font:700 clamp(30px,5vw,42px)/1.05 var(--serif);margin:0;flex:1}
+  .done{font:600 13px var(--sans);border:1px solid var(--line);background:var(--card);color:var(--ink-soft);border-radius:999px;padding:7px 14px;cursor:pointer;white-space:nowrap;transition:.2s}
+  .done.on{background:var(--green-soft);border-color:#b9d6c5;color:var(--green)}
+  h3{font:700 26px/1.2 var(--serif);margin:28px 0 10px;color:var(--wine)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;box-shadow:var(--shadow);margin:14px 0}
+  .card p{margin:0 0 10px}
+  .card p:last-child{margin:0}
+  ul.dots{margin:8px 0 0;padding:0;list-style:none}
+  ul.dots li{position:relative;padding-left:22px;margin:7px 0}
+  ul.dots li::before{content:"";position:absolute;left:4px;top:.68em;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+  ul.dots ul{list-style:none;padding:0;margin:4px 0}
+  ul.dots ul li::before{background:transparent;border:1.5px solid var(--gold)}
+  b.k{color:var(--wine)}
+  .def{font:500 italic 24px/1.4 var(--serif);border-left:3px solid var(--wine);padding:6px 0 6px 20px;margin:6px 0 18px;color:var(--ink)}
+  .quote{font:italic 500 21px/1.45 var(--serif);background:var(--gold-soft);border-radius:12px;padding:14px 18px;margin:12px 0 0}
+  .note{display:flex;gap:12px;background:var(--wine-soft);border-radius:12px;padding:14px 16px;margin-top:14px;font-size:16px}
+  .note .ic{font-size:18px}
+  .tag{display:inline-block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:4px}
+
+  /* GRIDS */
+  .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+  .mark{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--shadow);position:relative}
+  .mark .n{position:absolute;top:14px;right:16px;font:700 30px var(--serif);color:var(--gold);opacity:.4}
+  .mark h4{font:700 25px var(--serif);margin:0 0 6px;color:var(--wine)}
+  .mark p{margin:0;font-size:16px;color:var(--ink-soft)}
+  .mark ul.dots li{font-size:16px;color:var(--ink-soft);margin:4px 0}
+  .three{display:grid;gap:12px;grid-template-columns:repeat(3,1fr)}
+  .tri{text-align:center;padding:18px 12px;border-radius:var(--r);border:1px solid var(--line);background:var(--card)}
+  .tri .e{font-size:26px}
+  .tri strong{display:block;font:700 22px var(--serif);margin:4px 0 2px}
+  .tri span{font-size:14px;color:var(--ink-soft)}
+  @media(max-width:600px){.three{grid-template-columns:1fr}}
+
+  /* TIMELINE */
+  .tl{position:relative;margin:10px 0 0;padding-left:34px}
+  .tl::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--gold),var(--wine))}
+  .tl-item{position:relative;margin-bottom:18px}
+  .tl-item::before{content:"";position:absolute;left:-30px;top:22px;width:16px;height:16px;border-radius:50%;background:var(--card);border:3px solid var(--wine)}
+  .tl-item .card{margin:0}
+  .tl-item .when{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+  .tl-item h4{font:700 24px var(--serif);margin:2px 0 6px}
+  .chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:6px}
+  .chain span{background:var(--card);border:1px solid var(--line);padding:6px 12px;border-radius:999px;font-weight:600;font-size:15px}
+  .chain span:last-child{background:var(--wine);color:#fff;border-color:var(--wine)}
+  .chain i{color:var(--gold);font-style:normal;font-weight:700}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .chips span{background:var(--gold-soft);color:#6d531c;font-weight:600;font-size:15px;padding:5px 12px;border-radius:999px}
+
+  /* TEST SECTION */
+  #test{background:var(--ink);color:#f4ede0;padding:70px 20px 90px;margin-top:40px}
+  #test .wrap{max-width:880px;margin:0 auto}
+  #test h2{font:700 clamp(34px,6vw,52px)/1 var(--serif);margin:0 0 8px;text-align:center}
+  #test .sub{text-align:center;color:#c9bca8;margin:0 0 28px}
+  .tabs{display:flex;justify-content:center;gap:6px;margin-bottom:28px;background:#3a302b;padding:5px;border-radius:999px;width:max-content;max-width:100%;margin-left:auto;margin-right:auto}
+  .tabs button{font:600 15px var(--sans);background:transparent;border:0;color:#c9bca8;padding:9px 20px;border-radius:999px;cursor:pointer}
+  .tabs button.on{background:var(--paper);color:var(--ink)}
+
+  /* flashcards */
+  .fc-stage{perspective:1400px;max-width:560px;margin:0 auto}
+  .fc{position:relative;height:290px;cursor:pointer;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.3,.8,.3,1)}
+  .fc.flip{transform:rotateY(180deg)}
+  .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:22px;padding:30px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .front{background:var(--paper);color:var(--ink)}
+  .back{background:linear-gradient(140deg,#8a2433,#5d1520);color:#fff;transform:rotateY(180deg)}
+  .face .lbl{position:absolute;top:18px;left:0;right:0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;opacity:.6}
+  .face .q{font:600 clamp(26px,4.4vw,34px)/1.2 var(--serif)}
+  .face .hint{position:absolute;bottom:16px;font-size:13px;opacity:.55}
+  .fc-ctrl{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:22px;flex-wrap:wrap}
+  .fc-ctrl .btn{background:#3a302b;border-color:#4b3f38;color:#f4ede0}
+  .fc-ctrl .btn.ok{background:var(--green);border-color:var(--green)}
+  .fc-ctrl .btn.no{background:#8a2433;border-color:#8a2433}
+  .count{color:#c9bca8;font-weight:600;min-width:70px;text-align:center}
+  .tally{text-align:center;margin-top:14px;color:#c9bca8;font-size:15px}
+
+  /* quiz */
+  .qz{max-width:620px;margin:0 auto;background:var(--paper);color:var(--ink);border-radius:22px;padding:28px}
+  .qz-top{display:flex;justify-content:space-between;font-size:14px;font-weight:600;color:var(--ink-soft);margin-bottom:10px}
+  .qz h3{color:var(--ink);margin:6px 0 18px;font-size:28px}
+  .opt{display:block;width:100%;text-align:left;font:500 17px var(--sans);background:var(--card);border:1.5px solid var(--line);color:var(--ink);padding:13px 16px;border-radius:12px;margin:8px 0;cursor:pointer;transition:.15s}
+  .opt:hover:not(:disabled){border-color:var(--gold)}
+  .opt.right{background:var(--green-soft);border-color:var(--green);color:var(--green);font-weight:600}
+  .opt.wrong{background:var(--wine-soft);border-color:var(--wine);color:var(--wine)}
+  .opt:disabled{cursor:default}
+  .qz .next{margin-top:14px}
+  .result{text-align:center}
+  .result .big{font:700 72px var(--serif);color:var(--wine);line-height:1}
+
+  /* table */
+  .qa{width:100%;border-collapse:separate;border-spacing:0;background:var(--paper);color:var(--ink);border-radius:18px;overflow:hidden}
+  .qa td{padding:13px 18px;border-bottom:1px solid var(--line);vertical-align:top}
+  .qa tr:last-child td{border-bottom:0}
+  .qa td:first-child{color:var(--ink-soft);width:55%}
+  .qa td:last-child{font-weight:700;color:var(--wine)}
+  .qa.hide td:last-child span{filter:blur(6px);cursor:pointer;transition:filter .2s;user-select:none}
+  .qa.hide td:last-child span.show{filter:none}
+  .tbl-ctrl{text-align:center;margin-bottom:14px}
+  .tbl-ctrl .btn{background:#3a302b;border-color:#4b3f38;color:#f4ede0}
+
+  footer{text-align:center;padding:30px 20px;color:var(--ink-soft);font-size:14px}
+  .hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="#top">✠ Cirkevné dejiny</a>
+    <a class="l" href="#uvod">Úvod</a>
+    <a class="l" href="#cirkev">Cirkev</a>
+    <a class="l" href="#prvotna">Prvotná Cirkev</a>
+    <a class="l" href="#obce">Prvé obce</a>
+    <a class="l" href="#pavol">Sv. Pavol</a>
+    <a class="l" href="#zjavenie">Zjavenie</a>
+    <a class="l test" href="#test">Otestuj sa →</a>
+  </div>
+</nav>
+
+<header id="top">
+  <svg class="cross" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M24 4v40M12 16h24"/><circle cx="24" cy="16" r="6" stroke-width="1.6" opacity=".5"/></svg>
+  <div class="eyebrow">Poznámky na učenie</div>
+  <h1>Cirkevné <em>dejiny</em></h1>
+  <p class="lead">Všetko dôležité na test aj na odpoveď – prehľadne na jednom mieste. Prečítaj si kapitoly, označ, čo už vieš, a na konci sa otestuj.</p>
+  <div class="progress-wrap">
+    <div class="progress-label"><span>Tvoj pokrok</span><span id="progTxt">0 / 6 kapitol</span></div>
+    <div class="bar"><i id="progBar"></i></div>
+  </div>
+  <div class="hero-btns">
+    <a class="btn primary" href="#uvod">Začať učenie</a>
+    <a class="btn" href="#test">Rovno na kartičky</a>
+  </div>
+</header>
+
+<main>
+
+<!-- 1 -->
+<section class="ch" id="uvod" data-ch="1">
+  <div class="ch-head"><div class="num">1</div><h2>Úvod do cirkevných dejín</h2><button class="done">Viem to</button></div>
+  <p class="def">Cirkevné dejiny sú „učiteľkou života“.</p>
+  <div class="card">
+    <span class="tag">Prečo?</span>
+    <ul class="dots">
+      <li>učíme sa zo života a príkladu <b class="k">svätých</b>,</li>
+      <li>poučujeme sa aj z <b class="k">chýb a pádov</b> kresťanov,</li>
+      <li>ukazujú nám, že <b class="k">Kristus stále žije</b> so svojou Cirkvou, chráni ju a vedie,</li>
+      <li>odhaľujú <b class="k">Boží dobrotivý plán</b> s ľudstvom.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="ch" id="cirkev" data-ch="2">
+  <div class="ch-head"><div class="num">2</div><h2>Cirkev</h2><button class="done">Viem to</button></div>
+  <p class="def">Cirkev je božsko-ľudská ustanovizeň založená Ježišom Kristom, ktorej úlohou je viesť ľudí k spáse.</p>
+
+  <h3>4 základné znaky Cirkvi</h3>
+  <div class="grid">
+    <div class="mark"><span class="n">1</span><h4>Jedna</h4><p>Cirkev tvorí jedno spoločenstvo veriacich.</p></div>
+    <div class="mark"><span class="n">2</span><h4>Svätá</h4>
+      <ul class="dots">
+        <li>svätý zakladateľ – <b>Ježiš Kristus</b></li>
+        <li>sväté učenie – <b>evanjelium</b></li>
+        <li>prostriedky svätosti – <b>sviatosti</b></li>
+        <li>mnoho svätých (sv. Don Bosco, Matka Tereza, sv. Ján Pavol II.)</li>
+      </ul>
+    </div>
+    <div class="mark"><span class="n">3</span><h4>Katolícka</h4>
+      <p>z gréckeho <i>catholicos</i> = <b>všeobecný</b></p>
+      <ul class="dots"><li>je určená všetkým národom a rasám</li><li>obracia sa na ľudí všetkých čias</li></ul>
+    </div>
+    <div class="mark"><span class="n">4</span><h4>Apoštolská</h4>
+      <p>je postavená na základoch apoštolov</p>
+      <ul class="dots"><li>Ježiš ju vedie cez Petra a ostatných apoštolov</li><li>ich nástupcami sú <b>pápež a biskupi</b></li></ul>
+    </div>
+  </div>
+  <div class="note"><span class="ic">💡</span><span>Cirkev má toľko chýb, koľko ich majú ľudia, ktorí ju tvoria – preto je svätá napriek hriechom svojich členov.</span></div>
+  <p class="quote">„Choďte do celého sveta a hlásajte evanjelium všetkému stvoreniu.“ <span style="font-size:15px;font-style:normal;color:var(--ink-soft)">– Ježiš apoštolom</span></p>
+
+  <h3>Bonus – rozdelenie Cirkvi</h3>
+  <div class="three">
+    <div class="tri"><div class="e">🚶</div><strong>Putujúca</strong><span>žijúci členovia Cirkvi na zemi</span></div>
+    <div class="tri"><div class="e">🕯️</div><strong>Trpiaca</strong><span>duše v očistci</span></div>
+    <div class="tri"><div class="e">✨</div><strong>Oslávená</strong><span>svätí, ktorí dosiahli spásu v nebi</span></div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="ch" id="prvotna" data-ch="3">
+  <div class="ch-head"><div class="num">3</div><h2>Prvotná Cirkev – 5 znakov</h2><button class="done">Viem to</button></div>
+  <div class="grid">
+    <div class="mark"><span class="n">1</span><h4>Naplnená Duchom Svätým</h4><p>Apoštoli sa vďaka Duchu Svätému stali horlivými ohlasovateľmi evanjelia.</p></div>
+    <div class="mark"><span class="n">2</span><h4>Hierarchická</h4><p>Má svoju hierarchiu – sv. Peter má vedúce postavenie a je zástupcom Krista na zemi.</p></div>
+    <div class="mark"><span class="n">3</span><h4>Misionárska</h4><p>Šíri evanjelium, napr. prostredníctvom troch misijných ciest sv. Pavla.</p></div>
+    <div class="mark"><span class="n">4</span><h4>Prenasledovaná</h4><p>Kresťania boli prenasledovaní, ale boli milosrdní aj voči prenasledovateľom (sv. Štefan a obrátenie Šavla).</p></div>
+    <div class="mark"><span class="n">5</span><h4>Charitatívna</h4><p>Kresťania si pomáhali, delili sa o majetok a nebol medzi nimi nikto núdzny.</p></div>
+  </div>
+  <div class="note"><span class="ic">🧠</span><span>Pomôcka: <b>D</b>uch – <b>H</b>ierarchia – <b>M</b>isie – <b>P</b>renasledovanie – <b>CH</b>arita.</span></div>
+</section>
+
+<!-- 4 -->
+<section class="ch" id="obce" data-ch="4">
+  <div class="ch-head"><div class="num">4</div><h2>Prvé cirkevné obce</h2><button class="done">Viem to</button></div>
+
+  <h3>Cirkev v Jeruzaleme</h3>
+  <div class="card">
+    <ul class="dots">
+      <li>Po Ježišovom nanebovstúpení zostali apoštoli v Jeruzaleme.</li>
+      <li>Žili podobne ako Židia, ale mali aj nové zvyky:</li>
+    </ul>
+    <div class="chips"><span>🍞 lámanie chleba</span><span>🤝 delenie sa o majetok</span><span>❤️ vzájomná pomoc</span></div>
+  </div>
+
+  <h3>Apoštolský snem v Jeruzaleme – rok 50</h3>
+  <div class="card" style="border-left:4px solid var(--wine)">
+    <p><b>Prvý cirkevný koncil.</b> Najdôležitejšie rozhodnutia:</p>
+    <ul class="dots">
+      <li><b class="k">Pohania mohli vstúpiť do Cirkvi</b> bez toho, aby museli dodržiavať židovské zákony.</li>
+      <li>Cirkev sa postupne odpútala od synagógy.</li>
+      <li>Vytvárala sa cirkevná hierarchia: <b>diakoni, presbyteri a biskupi</b>.</li>
+      <li>Vedúcu úlohu mal apoštol <b>Peter</b>.</li>
+      <li>Prvým jeruzalemským biskupom sa stal apoštol <b>Jakub mladší</b>.</li>
+    </ul>
+  </div>
+
+  <h3>Cirkev v Antiochii</h3>
+  <div class="card">
+    <ul class="dots">
+      <li>Prvá cirkevná obec kresťanov pochádzajúcich z <b>pohanstva</b>.</li>
+      <li>Stala sa významným misijným strediskom.</li>
+      <li>Tu boli Ježišovi nasledovníci <b class="k">prvýkrát nazvaní kresťanmi</b>.</li>
+      <li>Odtiaľto sv. Pavol podnikal misijné cesty do Malej Ázie a Európy.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="ch" id="pavol" data-ch="5">
+  <div class="ch-head"><div class="num">5</div><h2>Svätý Pavol</h2><button class="done">Viem to</button></div>
+  <div class="tl">
+    <div class="tl-item"><div class="card">
+      <div class="when">cca 5 – 10 po Kr.</div><h4>Narodenie a detstvo</h4>
+      <ul class="dots">
+        <li>Pochádzal z mesta <b>Tarzus</b> (dnešné Turecko).</li>
+        <li>Pôvodne sa volal <b class="k">Šavol</b>.</li>
+        <li>Bol Žid a mal rímske občianstvo.</li>
+        <li>Poznal židovské náboženstvo a Starý zákon.</li>
+      </ul>
+    </div></div>
+    <div class="tl-item"><div class="card">
+      <div class="when">Prenasledovateľ</div><h4>Proti kresťanom</h4>
+      <ul class="dots">
+        <li>Prenasledoval kresťanov, pretože neveril v Ježiša Krista.</li>
+        <li>Bol svedkom ukameňovania <b>sv. Štefana</b>.</li>
+      </ul>
+    </div></div>
+    <div class="tl-item"><div class="card">
+      <div class="when">Cesta do Damasku</div><h4>Obrátenie</h4>
+      <ul class="dots">
+        <li>Na ceste do <b>Damasku</b> sa mu zjavil Ježiš Kristus a Šavol oslepol.</li>
+        <li>Neskôr znovu získal zrak a prijal kresťanskú vieru.</li>
+        <li>Z prenasledovateľa sa stal veľkým šíriteľom kresťanstva.</li>
+      </ul>
+    </div></div>
+    <div class="tl-item"><div class="card">
+      <div class="when">Misionár</div><h4>Život a pôsobenie</h4>
+      <ul class="dots">
+        <li>Cestoval do rôznych krajín a miest (tri misijné cesty).</li>
+        <li>Zakladal kresťanské spoločenstvá a cirkevné obce.</li>
+        <li>Ohlasoval Ježiša a jeho učenie.</li>
+        <li>Napísal viacero <b>listov</b> prvým kresťanským spoločenstvám – sú v Biblii.</li>
+        <li>Zažil väzenie.</li>
+      </ul>
+    </div></div>
+    <div class="tl-item"><div class="card">
+      <div class="when">cca 67 po Kr.</div><h4>Smrť</h4>
+      <p>Podľa kresťanskej tradície zomrel v <b>Ríme</b>.</p>
+    </div></div>
+  </div>
+  <h3>Zapamätaj si</h3>
+  <div class="chain"><span>Šavol</span><i>→</i><span>prenasledovateľ</span><i>→</i><span>zjavenie Ježiša</span><i>→</i><span>obrátenie</span><i>→</i><span>sv. Pavol, misionár</span></div>
+</section>
+
+<!-- 6 -->
+<section class="ch" id="zjavenie" data-ch="6">
+  <div class="ch-head"><div class="num">6</div><h2>Zjavenie apoštola Jána</h2><button class="done">Viem to</button></div>
+  <div class="card">
+    <ul class="dots">
+      <li>Je to <b class="k">posledná kniha</b> Nového zákona a celého Svätého písma.</li>
+      <li>V gréčtine sa nazýva <b>Jánova apokalypsa</b>.</li>
+    </ul>
+    <div class="chips"><span>Zjavenie apoštola Jána</span><span>Kniha zjavenia</span><span>Apokalypsa</span></div>
+  </div>
+  <div class="grid">
+    <div class="mark"><h4>Čo znamená slovo?</h4><p>Z gréčtiny: <b>apokalypsa = zjavenie, odhalenie</b>.</p></div>
+    <div class="mark"><h4>Prečo je ťažká?</h4><p>Používa veľa symbolov a obrazných vyjadrení.</p></div>
+  </div>
+  <div class="card">
+    <span class="tag">Apokalypsa ako literárny druh využíva</span>
+    <div class="chips"><span>💭 sny</span><span>👁️ videnia</span><span>👼 zjavenia anjelov</span><span>🔢 symbolické čísla a mená</span><span>🌀 tajomné a obrazné predstavy</span></div>
+    <div class="note" style="background:var(--gold-soft)"><span class="ic">📜</span><span>Pojem apokalypsa označuje aj židovské alebo kresťanské spisy, ktoré opisujú <b>posledné časy a koniec sveta</b>.</span></div>
+  </div>
+</section>
+</main>
+
+<!-- TEST -->
+<section id="test">
+  <div class="wrap">
+    <h2>Otestuj sa</h2>
+    <p class="sub">Najdôležitejšie veci, ktoré by si mal/a vedieť naspamäť.</p>
+    <div class="tabs">
+      <button class="on" data-tab="cards">Kartičky</button>
+      <button data-tab="quiz">Kvíz</button>
+      <button data-tab="table">Prehľad</button>
+    </div>
+
+    <div id="tab-cards">
+      <div class="fc-stage">
+        <div class="fc" id="fc">
+          <div class="face front"><div class="lbl">Otázka</div><div class="q" id="fcQ"></div><div class="hint">klikni pre odpoveď</div></div>
+          <div class="face back"><div class="lbl">Odpoveď</div><div class="q" id="fcA"></div></div>
+        </div>
+      </div>
+      <div class="fc-ctrl">
+        <button class="btn" id="prev">←</button>
+        <span class="count" id="fcCount"></span>
+        <button class="btn" id="next">→</button>
+      </div>
+      <div class="fc-ctrl">
+        <button class="btn no" id="dunno">✗ Ešte neviem</button>
+        <button class="btn ok" id="know">✓ Viem</button>
+        <button class="btn" id="shuffle">🔀 Zamiešať</button>
+      </div>
+      <div class="tally" id="tally"></div>
+    </div>
+
+    <div id="tab-quiz" class="hidden"><div class="qz" id="qz"></div></div>
+
+    <div id="tab-table" class="hidden">
+      <div class="tbl-ctrl"><button class="btn" id="toggleHide">🙈 Skryť odpovede</button></div>
+      <table class="qa" id="qa"></table>
+    </div>
+  </div>
+</section>
+
+<footer>Cirkevné dejiny · poznámky na učenie · veľa šťastia na teste 🍀</footer>
+
+<script>
+const CARDS=[
+ ["Kto založil Cirkev?","Ježiš Kristus"],
+ ["Aké sú 4 znaky Cirkvi?","Jedna, svätá, katolícka, apoštolská"],
+ ["Čo znamená „katolícka“?","Všeobecná"],
+ ["Kto je nástupcom apoštolov vo vedení Cirkvi?","Pápež a biskupi"],
+ ["Aké sú 3 časti Cirkvi?","Putujúca, trpiaca, oslávená"],
+ ["Koľko znakov má prvotná Cirkev?","5"],
+ ["Kedy a kde sa konal prvý cirkevný koncil?","V roku 50 v Jeruzaleme"],
+ ["Čo rozhodol apoštolský snem?","Pohania mohli vstúpiť do Cirkvi bez dodržiavania židovských zákonov"],
+ ["Kde boli Ježišovi nasledovníci prvýkrát nazvaní kresťanmi?","V Antiochii"],
+ ["Ako sa pôvodne volal sv. Pavol?","Šavol"],
+ ["Kde sa Pavol obrátil na kresťanstvo?","Na ceste do Damasku"],
+ ["Kedy a kde zomrel sv. Pavol?","Približne v roku 67 v Ríme"],
+ ["Čo znamená slovo apokalypsa?","Zjavenie, odhalenie"],
+ ["Ktorá je posledná kniha Biblie?","Zjavenie apoštola Jána"]
+];
+const QUIZ=[
+ ["Čo znamená grécke slovo „catholicos“?",["Všeobecný","Svätý","Apoštolský","Jediný"],0],
+ ["Ktorá časť Cirkvi označuje duše v očistci?",["Putujúca","Trpiaca","Oslávená","Prvotná"],1],
+ ["Kde boli Ježišovi nasledovníci prvýkrát nazvaní kresťanmi?",["V Jeruzaleme","V Ríme","V Antiochii","V Damasku"],2],
+ ["Kedy sa konal apoštolský snem v Jeruzaleme?",["V roku 33","V roku 50","V roku 67","V roku 100"],1],
+ ["Kto sa stal prvým jeruzalemským biskupom?",["Apoštol Peter","Sv. Štefan","Sv. Pavol","Apoštol Jakub mladší"],3],
+ ["Z ktorého mesta pochádzal sv. Pavol?",["Z Tarzu","Z Antiochie","Z Damasku","Z Ríma"],0],
+ ["Čo sa stalo Šavlovi na ceste do Damasku?",["Bol ukameňovaný","Zjavil sa mu Ježiš a oslepol","Stal sa biskupom","Napísal prvý list"],1],
+ ["Ktorý znak NEPATRÍ medzi 5 znakov prvotnej Cirkvi?",["Misionárska","Charitatívna","Bohatá","Prenasledovaná"],2],
+ ["Prečo je Cirkev svätá?",["Lebo jej členovia nikdy nehrešia","Má svätého zakladateľa, učenie a sviatosti","Lebo je najstaršia","Lebo sídli v Ríme"],1],
+ ["Čo znamená slovo apokalypsa?",["Koniec sveta","Zjavenie, odhalenie","Posledná kniha","Videnie anjela"],1],
+ ["Ktoré rozhodnutie prijal apoštolský snem?",["Pohania nemusia dodržiavať židovské zákony","Kresťania sa musia modliť v synagóge","Pavol bude pápežom","Biblia bude mať 73 kníh"],0],
+ ["Kto sú nástupcovia apoštolov?",["Diakoni","Pápež a biskupi","Svätí","Presbyteri"],1]
+];
+
+/* storage helpers */
+const S={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+
+/* chapter progress */
+let done=S.get("cd-done",[]);
+function renderProg(){
+  document.querySelectorAll("section.ch").forEach(s=>{
+    const on=done.includes(s.dataset.ch), b=s.querySelector(".done");
+    b.classList.toggle("on",on); b.textContent=on?"✓ Viem to":"Viem to";
+  });
+  document.getElementById("progTxt").textContent=done.length+" / 6 kapitol";
+  document.getElementById("progBar").style.width=(done.length/6*100)+"%";
+}
+document.querySelectorAll("section.ch .done").forEach(b=>b.addEventListener("click",()=>{
+  const id=b.closest("section").dataset.ch;
+  done=done.includes(id)?done.filter(x=>x!==id):[...done,id];
+  S.set("cd-done",done); renderProg();
+}));
+renderProg();
+
+/* tabs */
+document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x===b));
+  ["cards","quiz","table"].forEach(t=>document.getElementById("tab-"+t).classList.toggle("hidden",t!==b.dataset.tab));
+}));
+
+/* flashcards */
+let order=CARDS.map((_,i)=>i), idx=0, known=new Set(), unknown=new Set();
+const fc=document.getElementById("fc");
+function showCard(){
+  const [q,a]=CARDS[order[idx]];
+  fc.classList.remove("flip");
+  setTimeout(()=>{document.getElementById("fcQ").textContent=q;document.getElementById("fcA").textContent=a;},fc.classList.contains("flip")?0:150);
+  document.getElementById("fcCount").textContent=(idx+1)+" / "+CARDS.length;
+  document.getElementById("tally").textContent=`✓ Viem: ${known.size}   ·   ✗ Ešte neviem: ${unknown.size}`;
+}
+fc.addEventListener("click",()=>fc.classList.toggle("flip"));
+document.getElementById("next").onclick=()=>{idx=(idx+1)%CARDS.length;showCard()};
+document.getElementById("prev").onclick=()=>{idx=(idx-1+CARDS.length)%CARDS.length;showCard()};
+document.getElementById("know").onclick=()=>{known.add(order[idx]);unknown.delete(order[idx]);idx=(idx+1)%CARDS.length;showCard()};
+document.getElementById("dunno").onclick=()=>{unknown.add(order[idx]);known.delete(order[idx]);idx=(idx+1)%CARDS.length;showCard()};
+document.getElementById("shuffle").onclick=()=>{order.sort(()=>Math.random()-.5);idx=0;showCard()};
+document.addEventListener("keydown",e=>{
+  if(document.getElementById("tab-cards").classList.contains("hidden"))return;
+  const r=document.getElementById("test").getBoundingClientRect(); if(r.top>innerHeight||r.bottom<0)return;
+  if(e.key==="ArrowRight")document.getElementById("next").click();
+  if(e.key==="ArrowLeft")document.getElementById("prev").click();
+  if(e.key===" "){e.preventDefault();fc.classList.toggle("flip")}
+});
+document.getElementById("fcQ").textContent=CARDS[0][0];document.getElementById("fcA").textContent=CARDS[0][1];showCard();
+
+/* quiz */
+let qi=0,score=0,qOrder=[];
+const qz=document.getElementById("qz");
+function startQuiz(){qOrder=QUIZ.map((_,i)=>i).sort(()=>Math.random()-.5);qi=0;score=0;renderQ()}
+function renderQ(){
+  if(qi>=qOrder.length){
+    const pct=Math.round(score/QUIZ.length*100);
+    const msg=pct===100?"Výborne! Si pripravený/á na test. 🎉":pct>=75?"Veľmi dobre! Ešte pár vecí zopakovať.":pct>=50?"Dobrý základ – prejdi si kapitoly ešte raz.":"Nevadí – prečítaj si poznámky a skús znova.";
+    qz.innerHTML=`<div class="result"><div class="big">${score}/${QUIZ.length}</div><p style="font-size:19px;margin:12px 0 20px">${msg}</p><button class="btn primary" id="again">Skúsiť znova</button></div>`;
+    document.getElementById("again").onclick=startQuiz;return;
+  }
+  const [q,opts,c]=QUIZ[qOrder[qi]];
+  qz.innerHTML=`<div class="qz-top"><span>Otázka ${qi+1} z ${QUIZ.length}</span><span>Skóre: ${score}</span></div><h3>${q}</h3>`+
+    opts.map((o,i)=>`<button class="opt" data-i="${i}">${o}</button>`).join("")+`<button class="btn primary next hidden" id="qn">Ďalej →</button>`;
+  qz.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+    const i=+b.dataset.i;
+    qz.querySelectorAll(".opt").forEach(x=>{x.disabled=true;if(+x.dataset.i===c)x.classList.add("right")});
+    if(i===c)score++;else b.classList.add("wrong");
+    const n=document.getElementById("qn");n.classList.remove("hidden");n.onclick=()=>{qi++;renderQ()};
+  });
+}
+startQuiz();
+
+/* table */
+const qa=document.getElementById("qa");
+qa.innerHTML=CARDS.map(([q,a])=>`<tr><td>${q}</td><td><span>${a}</span></td></tr>`).join("");
+qa.addEventListener("click",e=>{const s=e.target.closest("span");if(s&&qa.classList.contains("hide"))s.classList.toggle("show")});
+document.getElementById("toggleHide").onclick=function(){
+  const h=qa.classList.toggle("hide");qa.querySelectorAll("span").forEach(s=>s.classList.remove("show"));
+  this.textContent=h?"👁️ Ukázať odpovede":"🙈 Skryť odpovede";
+};
+</script>
+</body>
+</html>
